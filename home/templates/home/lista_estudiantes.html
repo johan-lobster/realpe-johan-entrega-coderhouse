@@ -12,7 +12,7 @@
         <a href={% url "lista_estudiantes" %}>Lista Estudiantes</a>
     </nav>
     <h1>Listado De Estudiantes</h1>
-
+    {% if estudiantes %}
     <ul>
         {% for estudiante in estudiantes %}
         <li>
@@ -20,6 +20,8 @@
         </li>
         {% endfor %}
     </ul>
-    
+    {% else %}
+    <p>No hay estudiantes en la base de datos</p>
+    {% endif %}
 </body>
 </html>
