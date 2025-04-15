@@ -11,5 +11,13 @@
         <a href={% url "crear_estudiante" %}>Crear Estudiante</a>
     </nav>
     <h1>Aqui puedes crear un estudiante</h1>
+    <form action={% url "crear_estudiante" %} method="POST">
+        {% csrf_token %}
+
+        {{formulario}}
+
+        <input type="submit" value="Crear">
+
+    </form>
 </body>
 </html>
