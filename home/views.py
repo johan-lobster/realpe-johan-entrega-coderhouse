@@ -19,4 +19,5 @@ def crear_estudiante(request):
     return render(request, 'home/crear_estudiante.html', {'formulario':formulario})
 
 def lista_estudiantes(request):
-    return render(request, 'home/lista_estudiantes.html', {})
+    estudiantes = Estudiante.objects.all()
+    return render(request, 'home/lista_estudiantes.html', {'estudiantes':estudiantes})
