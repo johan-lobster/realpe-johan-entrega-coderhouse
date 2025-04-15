@@ -17,3 +17,6 @@ def crear_estudiante(request):
     else:
         formulario = CreacionEstudiante()
     return render(request, 'home/crear_estudiante.html', {'formulario':formulario})
+
+def lista_estudiantes(request):
+    return render(request, 'home/lista_estudiantes.html', {})
