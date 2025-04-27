@@ -16,7 +16,9 @@
     <ul>
         {% for estudiante in estudiantes %}
         <li>
-            {{estudiante}} | <a href={% url "detalle_estudiante" estudiante.id %}>Ver mas</a>
+            {{estudiante}}
+            | <a href={% url "detalle_estudiante" estudiante.id %}>Ver mas</a>
+            | <a href={% url "modificar_estudiante" estudiante.id %}>Modificar</a>
         </li>
         {% endfor %}
     </ul>

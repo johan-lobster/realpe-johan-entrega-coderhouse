@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href={% url "inicio" %}>Inicio</a>
+        <a href={% url "crear_estudiante" %}>Crear Estudiante</a>
+        <a href={% url "lista_estudiantes" %}>Lista Estudiantes</a>
+    </nav>
+    <h1>Aqui puedes modificar a {{estudiante.nombre}}</h1>
+    <form action={% url "modificar_estudiante" estudiante.id %} method="POST">
+        {% csrf_token %}
+
+        {{form}}
+
+        <input type="submit" value="Modificar">
+
+    </form>
+</body>
+</html>
