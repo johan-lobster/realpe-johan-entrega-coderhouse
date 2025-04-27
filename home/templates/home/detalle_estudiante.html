@@ -11,17 +11,9 @@
         <a href={% url "crear_estudiante" %}>Crear Estudiante</a>
         <a href={% url "lista_estudiantes" %}>Lista Estudiantes</a>
     </nav>
-    <h1>Listado De Estudiantes</h1>
-    {% if estudiantes %}
-    <ul>
-        {% for estudiante in estudiantes %}
-        <li>
-            {{estudiante}} | <a href={% url "detalle_estudiante" estudiante.id %}>Ver mas</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No hay estudiantes en la base de datos</p>
-    {% endif %}
+    <h1>{{estudiante}}</h1>
+    <p>Nombre: {{estudiante.nombre}}</p>
+    <p>Curso: {{estudiante.curso}}</p>
+    <p>Nota final: {{estudiante.nota_final}}</p>
 </body>
 </html>

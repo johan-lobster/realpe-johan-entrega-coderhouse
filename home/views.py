@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from home.forms import CreacionEstudiante
 from home.models import Estudiante
+from django.views.generic.detail import DetailView
 
 def inicio(request):
     return render(request, 'home/inicio.html')
@@ -21,3 +22,11 @@ def crear_estudiante(request):
 def lista_estudiantes(request):
     estudiantes = Estudiante.objects.all()
     return render(request, 'home/lista_estudiantes.html', {'estudiantes':estudiantes})
+
+#def detalle_estudiante(request, estudiante_especifico):
+#    estudiante = Estudiante.objects.get(id = estudiante_especifico)
+#    return render(request, 'home/detalle_estudiante.html', {'estudiante':estudiante})
+
+class VistaDetalleEstudiante(DetailView):
+    model = Estudiante
+    template_name = "home/detalle_estudiante.html"
