@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from home.forms import CreacionEstudiante
 from home.models import Estudiante
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 def inicio(request):
@@ -38,3 +38,9 @@ class VistaModificarEstudiante(UpdateView):
     template_name = "home/modificar_estudiante.html"
     fields = ["nombre", "curso", "nota_final"]
     success_url = reverse_lazy('lista_estudiantes')
+
+class VistaEliminarEstudiante(DeleteView):
+    model = Estudiante
+    template_name = "home/eliminar_estudiante.html"
+    success_url = reverse_lazy('lista_estudiantes')
+

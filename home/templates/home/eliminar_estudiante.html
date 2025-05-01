@@ -8,15 +8,14 @@
 <body>
     <nav>
         <a href={% url "inicio" %}>Inicio</a>
-        <a href={% url "lista_estudiantes" %}>Estudiantes</a>
+        <a href={% url "crear_estudiante" %}>Crear Estudiante</a>
+        <a href={% url "lista_estudiantes" %}>Lista Estudiantes</a>
     </nav>
-    <h1>Aqui puedes modificar a {{estudiante.nombre}}</h1>
-    <form action={% url "modificar_estudiante" estudiante.id %} method="POST">
+    <h1>Eliminar a {{estudiante.nombre}}</h1>
+    <form action={% url "eliminar_estudiante" estudiante.id %} method="POST">
         {% csrf_token %}
 
-        {{form}}
-
-        <input type="submit" value="Modificar">
+        <input type="submit" value="Confirmar">
 
     </form>
 </body>
