@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block contenido %}
     <h1>Login</h1>
-    <form action={% url "Login" %} method="POST">
+    <form action={% url "login" %} method="POST">
         {% csrf_token %}
 
         {{formulario}}
@@ -15,5 +10,4 @@
         <input type="submit" value="Login">
 
     </form>
-</body>
-</html>
+{% endblock contenido %}

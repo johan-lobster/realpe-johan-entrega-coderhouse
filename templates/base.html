@@ -9,6 +9,17 @@
     <nav>
         <a href={% url "inicio" %}>Inicio</a>
         <a href={% url "lista_estudiantes" %}>Estudiantes</a>
+        {% comment "" %}
+        <form action ="{% url "login" %}" method="get">
+            {% csrf_token %}
+            <input type="submit" value="Login">
+        </form>
+        {% endcomment %}
+        <a href={% url "login" %}>Login</a>
+        <form action ="{% url "logout" %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
     </nav>
     {% block contenido %}{% endblock contenido %}
 </body>
