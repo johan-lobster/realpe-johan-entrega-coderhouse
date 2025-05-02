@@ -5,10 +5,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     return render(request, 'home/inicio.html')
 
+@login_required
 def crear_estudiante(request):
 
     if request.method == 'POST':
