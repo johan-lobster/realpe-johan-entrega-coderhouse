@@ -4,6 +4,7 @@ from home.models import Estudiante
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def inicio(request):
     return render(request, 'home/inicio.html')
@@ -33,13 +34,13 @@ class VistaDetalleEstudiante(DetailView):
     model = Estudiante
     template_name = "home/detalle_estudiante.html"
 
-class VistaModificarEstudiante(UpdateView):
+class VistaModificarEstudiante(LoginRequiredMixin, UpdateView):
     model = Estudiante
     template_name = "home/modificar_estudiante.html"
     fields = ["nombre", "curso", "nota_final"]
     success_url = reverse_lazy('lista_estudiantes')
 
-class VistaEliminarEstudiante(DeleteView):
+class VistaEliminarEstudiante(LoginRequiredMixin, DeleteView):
     model = Estudiante
     template_name = "home/eliminar_estudiante.html"
     success_url = reverse_lazy('lista_estudiantes')
