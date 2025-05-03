@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django.contrib.auth import login as django_login
 from usuarios.forms import FormularioRegistro, FromularioEdicionPerfil
 from django.contrib.auth.decorators import login_required
+from usuarios.models import InfoExtra
 
 def login(request):
 
@@ -10,9 +11,13 @@ def login(request):
         formulario = AuthenticationForm(request, data = request.POST)
         if formulario.is_valid():
             usuario = formulario.get_user()
+
             django_login(request, usuario)
 
+            InfoExtra.objects.get_or_create(user=usuario)
+
             return redirect("inicio")
+        
     else:
         formulario = AuthenticationForm()
 
@@ -33,13 +38,22 @@ def registro(request):
 
 @login_required
 def editar_perfil(request):
+
+    infoextra = request.user.infoextra
+
     if request.method == "POST":
-        formulario = FromularioEdicionPerfil(request.POST, instance=request.user)
+        formulario = FromularioEdicionPerfil(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
+
+            if formulario.cleaned_data.get('avatar'):
+                infoextra.avatar = formulario.cleaned_data.get('avatar')
+
+            infoextra.save()
+
             formulario.save()
 
             return redirect("inicio")
     else:
-        formulario = FromularioEdicionPerfil(instance=request.user)
+        formulario = FromularioEdicionPerfil(initial={'avatar': infoextra.avatar} ,instance=request.user)
 
     return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
