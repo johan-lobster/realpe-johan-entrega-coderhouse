@@ -65,7 +65,12 @@
             <li class="sidebar-nav-item"><a href="{% url 'lista_estudiantes' %}">Estudiantes</a></li>
 
             {% if request.user.is_authenticated %}
-                <li class="sidebar-nav-item"><a href="{% url "editar_perfil" %}">{{ request.user.username }}</a></li>
+                <li class="sidebar-nav-item"><a href="{% url "editar_perfil" %}">
+                    {% if request.user.infoextra.avatar %}
+                    <img src= {{request.user.infoextra.avatar.url}} alt="" height="40px">
+                    {% endif %}
+                    
+                    {{ request.user.username }}</a></li>
                 <li class="sidebar-nav-item">
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
